@@ -18,7 +18,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <h2>Voting Simulation</h2>
+      <h2 style={{ marginTop: "10px" }}>Voting Simulation</h2>
       <div
         className="Voting-section"
         style={{
