@@ -1,0 +1,12 @@
+* {
+  margin: 0;
+}
+.App {
+  text-align: center;
+  background-color: #2b6faa;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(10px + 2vmin);
+  color: rgb(0, 0, 0);
+}
