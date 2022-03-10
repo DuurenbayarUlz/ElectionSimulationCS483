@@ -3,27 +3,36 @@ import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "./firebase";
 
-function App() {
-  const [votes, setVotes] = useState([]);
-  const votesCollectionRef = collection(db, "votes");
+export default function App() {
+  const [allvotes, setAllVotes] = useState([]);
+  const votesCollectionRef = collection(db, "test");
 
   useEffect(() => {
     const getVotes = async () => {
       const data = await getDocs(votesCollectionRef);
-      setVotes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      console.log(data);
+      setAllVotes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getVotes();
-  }, [votesCollectionRef]);
+  }, []);
 
   return (
-    <div className="app">
+    <div className="App">
       <h2>Voting Simulation</h2>
-      <div className="Voting-section">Test</div>
-      {votes.map((vote) => {
-        return <div>{vote.count}</div>;
-      })}
+      <div
+        className="Voting-section"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+          padding: "10px",
+        }}
+      >
+        Test
+        {allvotes.map((vote) => {
+          return <p>{`db: ${vote.name} & ${vote.age}`}</p>;
+        })}
+      </div>
     </div>
   );
 }
-
-export default App;
