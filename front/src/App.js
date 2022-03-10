@@ -1,4 +1,6 @@
 import "./App.css";
+import { collection, getDocs } from "firebase/firestore";
+import { useEffect, useState } from "react";
 import { db } from "./firebase";
 
 function App() {
@@ -11,13 +13,14 @@ function App() {
       setVotes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getVotes();
-  }, [usersCollectionRef]);
+  }, [votesCollectionRef]);
 
   return (
-    <div className="App">
+    <div className="app">
       <h2>Voting Simulation</h2>
+      <div className="Voting-section">Test</div>
       {votes.map((vote) => {
-        return <div>{vote}</div>;
+        return <div>{vote.count}</div>;
       })}
     </div>
   );
