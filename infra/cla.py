@@ -1,4 +1,6 @@
 import json
+from encryption import aes_cbc
+
 class cla: 
     # creates a new data base, taking in the number of voters according to the
     # user's preference. To be changed to a proper input later. 

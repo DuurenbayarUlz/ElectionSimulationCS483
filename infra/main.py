@@ -1,3 +1,5 @@
+from ctf import main_ctf
+
 class main:
     def simulate_all():
         num_of_voters = input("Enter the number of voters that you want: ")
