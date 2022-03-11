@@ -1,34 +1,33 @@
-import ast
-import binascii
-import json
-import string
-import sys
-import time
-from base64 import b64decode, b64encode
-import gmpy2
-from Crypto.Cipher import AES
-from Crypto.PublicKey import RSA
-from Crypto.Random import get_random_bytes
-from Crypto.Util.Padding import pad, unpad
-from cryptography.hazmat.backends import default_backend
-from cryptography.hazmat.primitives import serialization
-from cryptography.hazmat.primitives.asymmetric import rsa
+from ast import literal_eval
 
-class rsa: 
+class ctf: 
+    def aes_decrypt_casted_vote_list(encrypted_casted_vote_list):
+        return literal_eval(aes_cbc.aes_cbc_decryption(encrypted_casted_vote_list).decode("utf8"))
+    
+    def count_votes(aes_decrypt_casted_vote_list): 
+        vote_result_map = {}
+        for i in range(len(aes_decrypt_casted_vote_list)): 
+            if aes_decrypt_casted_vote_list[i] in vote_result_map: 
+                vote_result_map[aes_decrypt_casted_vote_list[i]] += 1
+            
+            else: 
+                vote_result_map[aes_decrypt_casted_vote_list[i]] = 1
+        print(vote_result_map)
+        return vote_result_map
+    
+    def winner(vote_result_map): 
+        # return ("Winner", max(vote_result_map, key=vote_result_map.get))
+        voter_map_values = sorted(vote_result_map.values())
+        voter_map_keys = sorted(vote_result_map, key=vote_result_map.get)
+        max_values = max(voter_map_values)
+        count_max_values = voter_map_values.count(max_values)
 
-    def create_keys(): 
-        private_key = rsa.generate_private_key(
-            public_exponent=65537, key_size = 2048, backend = default_backend()
-        )
-        public_key = private_key.public_key()
+        if count_max_values > 1: 
+            return ("Tie", voter_map_keys[-count_max_values::])
+        else: return ("Winner", voter_map_keys[-1])
 
-        # [private key, public key.n, public key.d, public_key]
-        return [private_key.d, public_key.public_numbers.n, public_key.public_numbers.d, public_key]
-        
-    def rsa_encryption(m, publickey): 
-        numbers = publickey.public_numbers()
-        return gmpy2.powmod(m, numbers.e, numbers.n)
+class main_ctf:
+    def run(number_of_voters):
+        print(ctf.winner(ctf.count_votes(ctf.aes_decrypt_casted_vote_list(main_vote.run_all(number_of_voters)))))
 
-    def rsa_decrypt(m, privatekey): 
-        numbers = privatekey.private_numbers()
-        return gmpy2.powmod(c, numbers.d, numbers.public_numbers.n)
+main_ctf.run(6)
