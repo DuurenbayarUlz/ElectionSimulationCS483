@@ -4,9 +4,13 @@ from vote import vote
 
 
 class main:
+    # run the simulation, calling each of the fucntions
     def simulate_all():
+        # file path of the json, located in the folder as Voter_Database. Replace the filepath.
+        # To be replaced with a user input for the filepath.
         populated_database = cla.populate_database(
-            "/Users/usaidbinshafqat/Documents/Winter/Cryptography/final/infra/Voter_Database.json", 100000)
+            "/Users/usaidbinshafqat/Documents/Winter/Cryptography/final/infra/Voter_Database.json", 100000)\
+
         get_decrypted_voter_list = vote.get_decrypt_voter_list(
             populated_database)
         choose_random_vote = vote.choose_random_vote()
