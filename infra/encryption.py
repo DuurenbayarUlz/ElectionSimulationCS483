@@ -43,9 +43,11 @@ class rsa:
 
 
 class helper_methods:
+    # converts hash map to string for encryption
     def hash_map_to_str(hash_map):
         str_hash_map = hash_map.decode("UTF-8")
         return str_hash_map
+    # converts hash map to a json for after decryption
 
     def hash_map_to_json(str_hash_map):
         plain_text_json = ast.literal_eval(str_hash_map)
@@ -53,6 +55,7 @@ class helper_methods:
 # AES encryption class
 
 
+# aes encryption class with encryption and decryption methods
 class aes_cbc:
     global key
     # making encryption key used for encryption
@@ -88,19 +91,7 @@ class aes_cbc:
             # unpads the the cipher for the plaintext
             pt = unpad(cipher.decrypt(ct), AES.block_size)
 
-            # creates a dictionary string of the unpadded and deciphered plaintext
-            # dict_str = pt.decode("UTF-8")
-            # #### to be repalaced with the helper methods to simpify the code
-            # # converts the json back into a hash map
-            # plain_text_json = ast.literal_eval(dict_str)
-            # returns the hash map
             return pt
         # if the decryption is worng, it throws an error
         except (ValueError, KeyError):
             print("Incorrect decryption")
-
-# test_hash_map = {1: "one", 2:"two"}
-# ciphertext_json = aes_cbc.aes_cbc_encryption(str(test_hash_map))
-
-# print(aes_cbc.aes_cbc_decryption(ciphertext_json))
-# print(rsa.generate_keys_rsa())
