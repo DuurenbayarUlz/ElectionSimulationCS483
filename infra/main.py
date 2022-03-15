@@ -9,7 +9,7 @@ class main:
         # file path of the json, located in the folder as Voter_Database. Replace the filepath.
         # To be replaced with a user input for the filepath.
         populated_database = cla.populate_database(
-            "/Users/usaidbinshafqat/Documents/Winter/Cryptography/final/infra/Voter_Database.json", 15000)
+            "/Users/usaidbinshafqat/Documents/Winter/Cryptography/final/infra/Voter_Database.json", 500)
 
         get_decrypted_voter_list = vote.get_decrypt_voter_list(
             populated_database)
