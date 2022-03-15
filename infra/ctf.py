@@ -1,6 +1,7 @@
 from ast import literal_eval
 from encryption import aes_cbc
 from ast import literal_eval
+import json
 
 
 # ctf class to count votes and find respective winner
@@ -21,6 +22,9 @@ class ctf:
             else:
                 vote_result_map[aes_decrypt_casted_vote_list[i]] = 1
         print("Total Verified Casted Votes:", sum(vote_result_map.values()))
+        # exporting the result map to a json for the front end
+        with open("/Users/usaidbinshafqat/Documents/Winter/Cryptography/final/front/result.json", "w+") as f:
+            json.dump(vote_result_map, f)
         return vote_result_map
 
     # finding the winner from the map with most votes,
