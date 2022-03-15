@@ -25,6 +25,3 @@ class main:
 
         print("Winner:", winner[1])
         return winner
-
-
-main.simulate_all()
