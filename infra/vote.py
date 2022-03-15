@@ -23,20 +23,24 @@ class vote:
         global_decrypted_list = hash_map_json
         return global_decrypted_list
 
-    # choosing random vote froma pre popuated list of three candidates
+    # choosing random vote froma pre popuated BUT RIGGED TO MAKE PETE WIN list of three candidates
+    # PETE IS THE LEGEND. PETE FOR THE WIN. PETE ALWAYS.
     def choose_random_vote():
-        candidates = ["Pete", "Teet", "John"]
+        candidates = ["Pete", "Pete", "Pete", "Pete",
+                      "Pete", "Teet" "Teet", "Teet", "John"]
         return random.choice(candidates)
 
     # signing the votes using RSA encryption so that the voters and their votes are signed
     def sign_casted_vote():
         global global_vote_with_signature
+        print("Signing votes")
         # assigning variable to global decrypted lsit
         voter_hash_map = global_decrypted_list
         # list holding the voter and their signature from public and private keys
         list_with_signed_vote = {}
         # itereating through the list to sign the voter
         # using the voter's public and private keys
+        count = 0
         for each_voter in global_decrypted_list:
             # random vote chosen
             casted_vote = vote.choose_random_vote()
@@ -46,6 +50,8 @@ class vote:
             # adding the vote for a candidate to the dict to count later
             list_with_signed_vote[each_voter] = signed_vote
             global_vote_with_signature = list_with_signed_vote
+            count += 1
+            print(count)
 
         return list_with_signed_vote
 
@@ -53,10 +59,14 @@ class vote:
     def verify_casted_vote():
         global global_decrypted_list
         global global_vote_with_signature
+        print("Verifying vote")
         # contains all voted candidates names
         all_votes = []
+        count = 0
         # iterating thorugh the signed list to verify
         for i in global_vote_with_signature:
+            count += 1
+            print(count)
             # if the vote is verified for each candidate, it appends to the name of the candiate list to be counted later
             if rsa.rsa_verify("Pete", global_decrypted_list[i][2], global_decrypted_list[i][1], global_vote_with_signature[i]):
                 all_votes.append("Pete")

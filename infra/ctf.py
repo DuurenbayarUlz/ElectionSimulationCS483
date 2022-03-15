@@ -20,7 +20,7 @@ class ctf:
                 vote_result_map[aes_decrypt_casted_vote_list[i]] += 1
             else:
                 vote_result_map[aes_decrypt_casted_vote_list[i]] = 1
-        print("Total Casted Votes:", sum(vote_result_map.values()))
+        print("Total Verified Casted Votes:", sum(vote_result_map.values()))
         return vote_result_map
 
     # finding the winner from the map with most votes,
