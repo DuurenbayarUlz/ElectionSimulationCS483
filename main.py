@@ -1,16 +1,19 @@
 from cla import cla
 from ctf import ctf
 from vote import vote
-
+import os
 
 class main:
     # run the simulation, calling each of the fucntions
     def simulate_all():
+        print(os.getcwd())
+        #To get the number of votes for the similation
+        input_number = input("Enter number of voters (max is 100000; use a lower number for faster execution): ")
         # file path of the json, located in the folder as Voter_Database. Replace the filepath.
         # To be replaced with a user input for the filepath.
-        # COPY FILEPATH TO INTENDED JSON VOTER DATABASE TO RUN
-        filepath = "..../final/Voter_Database.json"
-        populated_database = cla.populate_database(filepath, 500)
+        path = os.getcwd() + "\Voter_Database.json"
+        populated_database = cla.populate_database(
+             path, int(input_number))        
 
         get_decrypted_voter_list = vote.get_decrypt_voter_list(
             populated_database)
