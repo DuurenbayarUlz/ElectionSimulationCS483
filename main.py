@@ -11,7 +11,7 @@ class main:
         input_number = input("Enter number of voters (max is 100000; use a lower number for faster execution): ")
         # file path of the json, located in the folder as Voter_Database. Replace the filepath.
         # To be replaced with a user input for the filepath.
-        path = os.getcwd() + "\Voter_Database.json"
+        path = os.getcwd() + "\ElectionSimulationCS483-main\Voter_Database.json"
         populated_database = cla.populate_database(
              path, int(input_number))        
 
