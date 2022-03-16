@@ -23,6 +23,6 @@ A program that simulates an election cycle, where all communication is encrypted
 
 ## Potential Issues in Running: 
 - It might show an error about missing Pycryptodome or Crypto while running, to go about it: 
--> go to directory where python is install (or follow the filepath where the error is)
+-> go to directory where python is installed (or follow the filepath where the error is)
 -> Scroll until you see Crypto or Pycryptodome or similar folders and paste them into the project directory 
 -> Replace existing Crypto and Pycryptodome folders
